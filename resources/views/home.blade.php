@@ -7,7 +7,7 @@
 @section("head")
 <script src="{{url('Script%20js/external%20apis/constants.js')}}" defer></script>
 <script src="{{url('Script%20js/external%20apis/pixabay.js')}}" defer></script>
-<!--script src="{{url('Script%20js/external%20apis/amadeus.js')}}" defer></script-->
+<script src="{{url('Script%20js/external%20apis/amadeus.js')}}" defer></script>
 
 <script src="{{url('Script%20js/home.js')}}" defer></script>
 <script src="{{url('Script%20js/add_to_favourites.js')}}" defer></script>

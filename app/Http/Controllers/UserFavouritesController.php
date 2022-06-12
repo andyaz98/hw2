@@ -7,7 +7,7 @@ class UserFavouritesController extends BaseController
     
     public function addToFavourites($fav_dest){
         $user=User::find(session("user_id"));
-        $favourite=Favourite::where("favourite_dest",$fav_dest)->where("user_id",$user->id)->first();
+        $favourite=$user->favourites->where("favourite_dest",$fav_dest)->first();
         if(!isset($favourite)){
             $favourite=new Favourite;
             $favourite->favourite_dest=$fav_dest;
@@ -22,13 +22,13 @@ class UserFavouritesController extends BaseController
 
     public function getUserFavourites(){
         $user=User::find(session("user_id"));
-        $favourites=Favourite::where("user_id",$user->id)->get();
+        $favourites=$user->favourites;
         return($favourites);
     }
 
     public function removeFromFavourites($fav_dest){
         $user=User::find(session("user_id"));
-        $favourite=Favourite::where("user_id",$user->id)->where("favourite_dest",$fav_dest);
+        $favourite=$user->favourites->where("favourite_dest",$fav_dest)->first();
         $favourite->delete();
         return($user->username." ha eliminato ".$fav_dest." dai preferiti!");
     }

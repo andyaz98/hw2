@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 10, 2022 alle 19:59
+-- Creato il: Giu 13, 2022 alle 01:08
 -- Versione del server: 10.4.24-MariaDB
 -- Versione PHP: 8.1.5
 
@@ -217,8 +217,8 @@ INSERT INTO `decolla` (`volo`, `aeroporto`, `terminal`) VALUES
 
 CREATE TABLE `favourites` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
   `favourite_dest` varchar(50) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -364,7 +364,8 @@ ALTER TABLE `decolla`
 -- Indici per le tabelle `favourites`
 --
 ALTER TABLE `favourites`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indici per le tabelle `terminal`
@@ -399,6 +400,16 @@ ALTER TABLE `favourites`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `favourites`
+--
+ALTER TABLE `favourites`
+  ADD CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

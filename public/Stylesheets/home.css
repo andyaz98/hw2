@@ -151,6 +151,12 @@ section{
     margin-bottom: 15%;
 }
 
+@media (max-width:950px) {
+    section{
+        align-items: unset;
+    }
+}
+
 section .paragraph{
     flex-grow: 1;
     flex-shrink: 0;
